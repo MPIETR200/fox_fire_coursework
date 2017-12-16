@@ -136,7 +136,6 @@ xcopy /Y "C:\Users\pietr\Desktop\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(OutDir)
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cBkGround.cpp" />
-    <ClCompile Include="cBullet.cpp" />
     <ClCompile Include="cButton.cpp" />
     <ClCompile Include="cButtonMgr.cpp" />
     <ClCompile Include="cCrate.cpp" />
@@ -155,7 +154,6 @@ xcopy /Y "C:\Users\pietr\Desktop\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(OutDir)
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBkGround.h" />
-    <ClInclude Include="cBullet.h" />
     <ClInclude Include="cButton.h" />
     <ClInclude Include="cButtonMgr.h" />
     <ClInclude Include="cCrate.h" />

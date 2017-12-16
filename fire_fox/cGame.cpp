@@ -51,7 +51,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 
 	// the code for saving the game? added from lab 10
 	// Set filename
-	theFile.setFileName("Data/usermap.dat");
+	theFile.setFileName("Data/userData.dat");
 	// Check file is available
 	if (!theFile.openFile(ios::in)) //open file for input output
 	{
@@ -101,8 +101,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	{
 		theFontMgr->addFont(fontList[fonts], fontsToUse[fonts], 56);
 	}
-	string scoreString = to_string(score);
-	LPCSTR scoreLPCSTR = scoreString.c_str();
+	
 
 	gameTextNames = { "Title", "keys", "Game Over", "Score", "scoreVal",};
 	gameTextList = { "KITSUNE BI", "MOVEMENT KEYS:", "GAME OVER", "SCORE: ", scoreLPCSTR };
@@ -134,11 +133,13 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	spriteBkgd1.setTexture(theTextureMgr->getTexture("theMenuBkg"));
 	spriteBkgd1.setSpriteDimensions(theTextureMgr->getTexture("theMenuBkg")->getTWidth(), theTextureMgr->getTexture("theMenuBkg")->getTHeight());
 
+	// set sprite for the end screen
+
 	spriteBkgd2.setSpritePos({ 0, 0 });
 	spriteBkgd2.setTexture(theTextureMgr->getTexture("EndScreen"));
 	spriteBkgd2.setSpriteDimensions(theTextureMgr->getTexture("EndScreen")->getTWidth(), theTextureMgr->getTexture("EndScreen")->getTHeight());
 
-	// changed the sprite possition to the bottom of the screen
+	// set sprite for the player, changed the sprite possition to the bottom of the screen
 	theCrate.setSpritePos({ 700, 650 });
 	theCrate.setTexture(theTextureMgr->getTexture("theCrate"));
 	theCrate.setSpriteDimensions(theTextureMgr->getTexture("theCrate")->getTWidth(), theTextureMgr->getTexture("theCrate")->getTHeight());
@@ -213,6 +214,7 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		{
 			theOrbs[draw]->render(theRenderer, &theOrbs[draw]->getSpriteDimensions(), &theOrbs[draw]->getSpritePos(), theOrbs[draw]->getSpriteRotAngle(), &theOrbs[draw]->getSpriteCentre(), theOrbs[draw]->getSpriteScale());
 		}
+		// display the score to the player 
 		tempTextTexture = theTextureMgr->getTexture("Score");
 		pos = { 600, 10, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
 		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
@@ -393,7 +395,7 @@ bool cGame::getInput(bool theLoop)
 				{
 				case SDL_BUTTON_LEFT:
 				{
-					//added from lab10
+					//added from lab10 to recognise the mouse clicks
 					theAreaClicked = { event.motion.x, event.motion.y };
 					theSoundMgr->getSnd("click")->play(0);
 				

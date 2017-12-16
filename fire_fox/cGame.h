@@ -91,6 +91,8 @@ private:
 	SDL_Point theAreaClicked;
 	int score;
 	
+	string scoreString = to_string(score);
+	LPCSTR scoreLPCSTR = scoreString.c_str();
 };
 
 #endif
